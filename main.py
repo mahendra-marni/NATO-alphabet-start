@@ -7,6 +7,17 @@ student_data_frame = pandas.DataFrame(phonetics_list)
 phonetics_dict = {row.letter: row.code for (index, row) in student_data_frame.iterrows()}
 
 # TODO 2. Create a list of the phonetic code words from a word that the user inputs.
-word = input("Enter the word: ").upper()
-output_list = [phonetics_dict[letter] for letter in word if letter in phonetics_dict]
-print(output_list)
+
+
+def generate_phonetic():
+    word = input("Enter the word: ").upper()
+    try:
+        output_list = [phonetics_dict[letter] for letter in word]
+    except KeyError:
+        print("Sorry, Letters in the Alphabet only please")
+        generate_phonetic()
+    else:
+        print(output_list)
+
+
+generate_phonetic()
